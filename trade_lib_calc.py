@@ -21,7 +21,7 @@ def PrintSellPoints(sellPoints, header, amountToSell, price, tradeType):
 
         profit = '${:,.6f}'.format(profit)
 
-        print("Target",index,":", '${:,.6f}'.format(sellpoint))
+        print("Target",index,":", '${:,.9f}'.format(sellpoint))
         print("Faturado: ${}. Profit: {}".format(faturado, profit))
         print("Profits til this moment: ",'${:,.4f}'.format(profits))
         index += 1
