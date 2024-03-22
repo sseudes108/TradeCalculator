@@ -1,6 +1,6 @@
 import subprocess
 
-arquivo = ["services", "psswd"]
+arquivo = ["services", "passwd"]
 palavras = ["ssh", "3398"]
 
 for palavra in palavras:
