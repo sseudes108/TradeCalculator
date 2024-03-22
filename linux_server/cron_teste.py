@@ -1,25 +1,28 @@
 import subprocess
+import os
+
 
 def criar_log():
-    log = ler_log() + 1
+    home_dir = os.path.expanduser("~")
+    log_path = os.path.join(home_dir, "logs")
+    log = ler_log(log_path) + 1
 
-    log_file = open("log.txt", "w", encoding='utf-8')
-    log_file.write("{}".format(log, end=""))
-    log_file.close()
+    with open("{}log.txt".format(log_path), "w", encoding='utf-8') as log_file:
+        log_file.write("{}".format(log, end=""))
 
-    new_log_file = open("log{}.txt".format(log), "w", encoding='utf-8')
-    new_log_file.write("{}".format(log, end=""))
-    new_log_file.close()
+    with open("{}log{}.txt".format(log_path, log), "w", encoding='uft-8') as new_log_file:
+        new_log_file.write("{}".format(log, end=""))
 
-    processo = "cat /var/log/syslog | tail -n 10 >> log{}.txt".format(log)
-    subprocess.run(processo)
+    processo = "cat /var/log/syslog | tail -n 10 > {}log{}.txt".format(log_path, log)
+    subprocess.run(processo, shell=True)
 
-def ler_log():
-    log_file = open("log.txt", "r")
-    log = log_file.read()
+
+def ler_log(log_path):
+    log_file = open("{}log.txt".format(log_path), "r")
+    log = log_file.read().strip()
     print("current log", log)
     log_file.close()
     return int(log)
 
-criar_log()
 
+criar_log()
