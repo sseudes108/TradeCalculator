@@ -10,6 +10,6 @@ for palavra in palavras:
 comando = "cat /etc/{} | grep {} > file2.txt".format(arquivo[1], "eudes")
 subprocess.run(comando, shell=True)
 
-comando = "cat file.txt | grep {} >> file2.txt".format(arquivo[1], "eudes")
+comando = "cat file.txt | grep >> file2.txt"
 subprocess.run(comando, shell=True)
 
